@@ -86,7 +86,7 @@ namespace Datos
             {
                 var result = cmd.ExecuteNonQuery();
                 Conexion.Close();
-                return result == 1 ? "se eliminó el Producto" : "error al eliminar el Producto";
+                return result > 0 ? "se eliminó el Producto" : "error al eliminar el Producto";
             }
             catch (Exception)
             {
