@@ -53,17 +53,17 @@ namespace Datos
         }
 
 
-        public string EditarCliente(Cliente cliente)
+        public string EditProduct(Producto producto)
         {
             Conexion.Open();
-            cmd = new SqlCommand("EditarCliente", Conexion);
+            cmd = new SqlCommand("EditarProducto", Conexion);
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@id_cliente ", cliente.id_cliente);
-            cmd.Parameters.AddWithValue("@Cedula", cliente.Cedula);
-            cmd.Parameters.AddWithValue("@Nombre", cliente.Nombre);
-            cmd.Parameters.AddWithValue("@Telefono", cliente.Telefono);
-            cmd.Parameters.AddWithValue("@Correo", cliente.Correo);
-            cmd.Parameters.AddWithValue("@Direccion", cliente.Direccion);
+            //cmd.Parameters.AddWithValue("@id_cliente ", cliente.id_cliente);
+            //cmd.Parameters.AddWithValue("@Cedula", cliente.Cedula);
+            //cmd.Parameters.AddWithValue("@Nombre", cliente.Nombre);
+            //cmd.Parameters.AddWithValue("@Telefono", cliente.Telefono);
+            //cmd.Parameters.AddWithValue("@Correo", cliente.Correo);
+            //cmd.Parameters.AddWithValue("@Direccion", cliente.Direccion);
             try
             {
                 var result = cmd.ExecuteNonQuery();
