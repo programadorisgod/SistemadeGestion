@@ -45,9 +45,10 @@ namespace Datos
 
             while (reader.Read())
             {
-                ProductList.Add(new Producto(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetDouble(3), reader.GetInt32(4)));
+                ProductList.Add(new Producto(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), double.Parse(reader.GetDecimal(3).ToString()), reader.GetInt32(4)));
             }
             Conexion.Close();
+
             return ProductList;
         }
 

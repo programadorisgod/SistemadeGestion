@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Entidades;
 using Datos;
-using NPOI.SS.Formula.Functions;
+//using NPOI.SS.Formula.Functions;
 
 namespace Logica
 {
