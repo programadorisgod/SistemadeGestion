@@ -75,8 +75,6 @@ namespace Datos
                 Conexion.Close();
                 return "error al editar";
             }
-
-
         }
 
         public int BuscarPorId(string Cedula)
