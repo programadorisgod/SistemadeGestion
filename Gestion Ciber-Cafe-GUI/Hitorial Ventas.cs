@@ -19,14 +19,14 @@ namespace Gestion_Ciber_Cafe_GUI
 
         private void comboBuscar_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBuscar.SelectedIndex == 1)
-            {
-                Calendario.Visible = true;
-            }
-            else
-            {
-                Calendario.Visible = false;
-            }
+        //    if (comboBuscar.SelectedIndex == 1)
+        //    {
+        //        Calendario.Visible = true;
+        //    }
+        //    else
+        //    {
+        //        Calendario.Visible = false;
+        //    }
         }
     }
 }

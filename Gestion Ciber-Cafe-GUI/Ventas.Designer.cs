@@ -31,6 +31,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.GrillaClientes = new System.Windows.Forms.DataGridView();
             this.Fecha = new System.Windows.Forms.TextBox();
             this.btnRegresar = new System.Windows.Forms.Button();
             this.btnventa = new System.Windows.Forms.Button();
@@ -41,7 +42,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.txtStock = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.bntBuscarProducto = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.txtcodigoproducto = new System.Windows.Forms.TextBox();
@@ -56,7 +57,6 @@
             this.label27 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.GrillaClientes = new System.Windows.Forms.DataGridView();
             this.eliminar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -64,10 +64,10 @@
             this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SubTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCantidad)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnBuscar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GrillaClientes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCantidad)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bntBuscarProducto)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnBuscar)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -84,7 +84,7 @@
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.txtStock);
             this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.pictureBox1);
+            this.groupBox1.Controls.Add(this.bntBuscarProducto);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.txtDescripcion);
             this.groupBox1.Controls.Add(this.txtcodigoproducto);
@@ -104,6 +104,40 @@
             this.groupBox1.Size = new System.Drawing.Size(865, 598);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
+            // 
+            // GrillaClientes
+            // 
+            this.GrillaClientes.AllowUserToAddRows = false;
+            this.GrillaClientes.BackgroundColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(2);
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.GrillaClientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.GrillaClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.GrillaClientes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.eliminar,
+            this.Codigo,
+            this.Descripcion,
+            this.Cantidads,
+            this.Precio,
+            this.SubTotal});
+            this.GrillaClientes.Location = new System.Drawing.Point(53, 276);
+            this.GrillaClientes.MultiSelect = false;
+            this.GrillaClientes.Name = "GrillaClientes";
+            this.GrillaClientes.ReadOnly = true;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Transparent;
+            this.GrillaClientes.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            this.GrillaClientes.RowTemplate.Height = 24;
+            this.GrillaClientes.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.GrillaClientes.Size = new System.Drawing.Size(711, 252);
+            this.GrillaClientes.TabIndex = 152;
+            this.GrillaClientes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrillaClientes_CellContentClick);
             // 
             // Fecha
             // 
@@ -214,17 +248,18 @@
             this.label7.TabIndex = 133;
             this.label7.Text = "Stock:";
             // 
-            // pictureBox1
+            // bntBuscarProducto
             // 
-            this.pictureBox1.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBox1.Image = global::Gestion_Ciber_Cafe_GUI.Properties.Resources._64673;
-            this.pictureBox1.Location = new System.Drawing.Point(418, 229);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(22, 20);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 132;
-            this.pictureBox1.TabStop = false;
+            this.bntBuscarProducto.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.bntBuscarProducto.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.bntBuscarProducto.Image = global::Gestion_Ciber_Cafe_GUI.Properties.Resources._64673;
+            this.bntBuscarProducto.Location = new System.Drawing.Point(418, 229);
+            this.bntBuscarProducto.Name = "bntBuscarProducto";
+            this.bntBuscarProducto.Size = new System.Drawing.Size(22, 20);
+            this.bntBuscarProducto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.bntBuscarProducto.TabIndex = 132;
+            this.bntBuscarProducto.TabStop = false;
+            this.bntBuscarProducto.Click += new System.EventHandler(this.bntBuscarProducto_Click);
             // 
             // label2
             // 
@@ -250,6 +285,7 @@
             this.txtcodigoproducto.Name = "txtcodigoproducto";
             this.txtcodigoproducto.Size = new System.Drawing.Size(95, 20);
             this.txtcodigoproducto.TabIndex = 129;
+            this.txtcodigoproducto.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtcodigoproducto_PreviewKeyDown);
             // 
             // label3
             // 
@@ -354,40 +390,6 @@
             this.textBox1.Size = new System.Drawing.Size(859, 60);
             this.textBox1.TabIndex = 1;
             // 
-            // GrillaClientes
-            // 
-            this.GrillaClientes.AllowUserToAddRows = false;
-            this.GrillaClientes.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(2);
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.GrillaClientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.GrillaClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.GrillaClientes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.eliminar,
-            this.Codigo,
-            this.Descripcion,
-            this.Cantidads,
-            this.Precio,
-            this.SubTotal});
-            this.GrillaClientes.Location = new System.Drawing.Point(53, 276);
-            this.GrillaClientes.MultiSelect = false;
-            this.GrillaClientes.Name = "GrillaClientes";
-            this.GrillaClientes.ReadOnly = true;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Transparent;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Transparent;
-            this.GrillaClientes.RowsDefaultCellStyle = dataGridViewCellStyle2;
-            this.GrillaClientes.RowTemplate.Height = 24;
-            this.GrillaClientes.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.GrillaClientes.Size = new System.Drawing.Size(711, 252);
-            this.GrillaClientes.TabIndex = 152;
-            this.GrillaClientes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrillaClientes_CellContentClick);
-            // 
             // eliminar
             // 
             this.eliminar.HeaderText = "";
@@ -447,10 +449,10 @@
             this.Load += new System.EventHandler(this.Ventas_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCantidad)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnBuscar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GrillaClientes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCantidad)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bntBuscarProducto)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnBuscar)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -473,7 +475,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtStock;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox bntBuscarProducto;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtDescripcion;
         private System.Windows.Forms.TextBox txtcodigoproducto;

@@ -8,7 +8,7 @@ namespace Datos
 {
     public class ConexionBasedeDatos
     {
-        string cadenaConexion = "Server=.\\SQLEXPRESS; Database= GESTION_INVENTARIO_TB; Trusted_Connection=True;";
+        public static string cadenaConexion = "Server=.\\SQLEXPRESS; Database= GESTION_INVENTARIO_TB; Trusted_Connection=True;";
         public SqlConnection Conexion;
         public ConexionBasedeDatos()
         {

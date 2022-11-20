@@ -68,55 +68,56 @@ namespace Datos
 
         }
 
-        public string Insertar(Entidades.Ventas venta, out string mensaje)
+        public int Insertar(Entidades.Ventas venta, out string mensaje)
         {
-            int count;
+
             mensaje = string.Empty;
-            Conexion.Open();
-            cmd = new SqlCommand("IngresarVentas", Conexion);
-            cmd.CommandType = System.Data.CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@idcliente", venta.Idcliente);
-            cmd.Parameters.AddWithValue("@Cantidad", venta.CantidadProductos);
-            cmd.Parameters.AddWithValue("@Totalventa", venta.TotalVenta);
-            count = Convert.ToInt32(cmd.ExecuteScalar());
-            try
+            int result = 0;
+
+            using (SqlConnection connection = new SqlConnection(ConexionBasedeDatos.cadenaConexion))
             {
-                foreach (DetalleSalida detalle in venta.ListaDetalleSalida)
+                try
                 {
-                    cmd = new SqlCommand("IngresarDetalleVentas");
-                    cmd.Parameters.AddWithValue("@id_venta", count);
-                    cmd.Parameters.AddWithValue("@coidgo_producto", detalle.CodigoProducto);
-                    cmd.Parameters.AddWithValue("@Subtotal", detalle.SubTotal);
-                    cmd.Parameters.AddWithValue("@Cantidad", detalle.Cantidad);
+                    connection.Open();
+                    StringBuilder cmd = new StringBuilder();
+                    cmd.AppendLine("CREATE  TABLE REGISTRO(id INTEGER);");
+                    cmd.AppendLine(string.Format("INSERT INTO VENTAS(Id_cliente, Cantidad_productos, Monto_total) values('{0}','{1}','{2}');",
+                        venta.Idcliente,
+                        venta.CantidadProductos,
+                        venta.TotalVenta));
+                   cmd.AppendLine("INSERT INTO REGISTRO (id) VALUES (SCOPE_IDENTITY());");
+
+                    foreach (DetalleSalida detalle in venta.ListaDetalleSalida)
+                    {
+                        cmd.AppendLine(string.Format("INSERT INTO DETALLE_VENTAS(Id_venta,Codigo_producto,Cantidad,Subtotal)values({0},{1},'{2}','{3}');",
+                        "(SELECT id FROM REGISTRO)",
+                        detalle.CodigoProducto,
+                        detalle.Cantidad,
+                        detalle.SubTotal));
+
+                    }
+                    SqlCommand cemd = new SqlCommand(cmd.ToString(), connection);
+                    cemd.CommandType = System.Data.CommandType.Text;
+                    result = cemd.ExecuteNonQuery();
+                    if (result < 1)
+                    {
+                   
+                        mensaje = "No se pudo registrar la salida de los productos";
+                    }
+             
 
                 }
-
-                var result = cmd.ExecuteNonQuery();
-                if (result < 1)
+                catch (Exception ex)
                 {
-                    mensaje = "No se pudo registrar la salida de los productos";
+
+          
+                    result = 0;
+                    mensaje = ex.Message;
                 }
-                Conexion.Close();
-
             }
-            catch (Exception ex)
-            {
+            return result;
 
-                Conexion.Close();
-                return ex.Message;
-            }
-            return mensaje;
         }
-
-
-
-
-
-
-
-
-
-
 
     }
 }

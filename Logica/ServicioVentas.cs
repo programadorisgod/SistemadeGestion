@@ -20,7 +20,10 @@ namespace Logica
         {
             return repositorioVentas.Cantidadnormal(codigoproducto, cantidad, out mensaje);
         }
-
+        public int Insertar(Entidades.Ventas venta, out string mensaje)
+        {
+          return repositorioVentas.Insertar(venta, out mensaje);
+        }
         public int BuscarporID(string cedula)
         {
             return repositorioCliente.BuscarPorId(cedula);
