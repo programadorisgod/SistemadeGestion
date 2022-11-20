@@ -10,6 +10,9 @@ namespace Logica
     {
         Datos.RepositorioVentas repositorioVentas = new Datos.RepositorioVentas();
         Datos.RepositorioCliente repositorioCliente = new Datos.RepositorioCliente();
+
+        //Que no se te olvide ponerle interfaz de contrato oite
+
         public int reducirCantidad(int codigoproducto, int cantidad, out string mensaje)
         {
 

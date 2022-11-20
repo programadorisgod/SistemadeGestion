@@ -126,7 +126,7 @@ namespace Gestion_Ciber_Cafe_GUI
             {
                 VisitLink();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("No se puede abrir el enlace en el que se hizo clic.");
             }

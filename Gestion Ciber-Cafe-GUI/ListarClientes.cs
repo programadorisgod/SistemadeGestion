@@ -11,18 +11,18 @@ using System.Windows.Forms;
 
 namespace Gestion_Ciber_Cafe_GUI
 {
-    public partial class ListarClietnes : Form
+    public partial class ListarClientes : Form
     {
         public string Cedulacliente { get; set; }
         public string NombreCliente { get; set; }
         int p = -1;
         Logica.ServicioCliente servicioCliente = new Logica.ServicioCliente();
-        public ListarClietnes()
+        public ListarClientes()
         {
             InitializeComponent();
         }
 
-        void Refresh()
+        void RefreshList()
         {
             foreach (var item in servicioCliente.GetAll())
             {
@@ -32,7 +32,7 @@ namespace Gestion_Ciber_Cafe_GUI
 
         private void ListarClietnes_Load(object sender, EventArgs e)
         {
-            Refresh();
+            RefreshList();
         }
 
         private void GrillaClientes_CellContentClick(object sender, DataGridViewCellEventArgs e)

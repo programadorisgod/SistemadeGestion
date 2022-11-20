@@ -1,6 +1,6 @@
 ﻿namespace Gestion_Ciber_Cafe_GUI
 {
-    partial class ListarClietnes
+    partial class ListarClientes
     {
         /// <summary>
         /// Required designer variable.
