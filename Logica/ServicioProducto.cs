@@ -8,7 +8,7 @@ using Datos;
 
 namespace Logica
 {
-    public class ServicioProducto : IserviceProduct<Producto>
+    public class ServicioProducto : IserviceStandard<Producto>
     {
         List<Producto> ListaProductos;
         RepositorioProducto repositorioProducto = new RepositorioProducto();

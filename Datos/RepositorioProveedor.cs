@@ -8,24 +8,23 @@ using System.Threading.Tasks;
 
 namespace Datos
 {
-    public class RepositorioProducto : ConexionBasedeDatos
+    public class RepositorioProveedor : ConexionBasedeDatos
     {
-
         SqlCommand cmd;
-        public string AddProduct(Producto producto)
+        public string AddProvider(Proveedor proveedor)
         {
             Conexion.Open();
-            cmd = new SqlCommand("AgregarProducto", Conexion);
+            cmd = new SqlCommand("AgregarProveedor", Conexion);
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@Codigo", producto.Codigo);
-            cmd.Parameters.AddWithValue("@Nombre", producto.Nombre);
-            cmd.Parameters.AddWithValue("@Descripcion", producto.Descripcion);
-            cmd.Parameters.AddWithValue("@PrecioVenta", producto.ValorVenta);
+            cmd.Parameters.AddWithValue("@Cedula", proveedor.Cedula);
+            cmd.Parameters.AddWithValue("@Nombre", proveedor.Nombre);
+            cmd.Parameters.AddWithValue("@Telefono", proveedor.Telefono);
+            cmd.Parameters.AddWithValue("@RazonSocial", proveedor.RazonSocial);
             try
             {
                 var result = cmd.ExecuteNonQuery();
                 Conexion.Close();
-                return result == 1 ? "se agregó el Producto" : "error al agregar el Producto";
+                return result == 1 ? "se agregó el Proveedor" : "error al agregar el Proveedor";
             }
             catch (Exception)
             {
@@ -35,21 +34,21 @@ namespace Datos
         }
 
 
-        public List<Producto> GetProductList()
+        public List<Proveedor> GetProviderList()
         {
-            List<Producto> ProductList = new List<Producto>();
-            string ssql = String.Format("SELECT * FROM Producto");
+            List<Proveedor> ProviderList = new List<Proveedor>();
+            string ssql = String.Format("SELECT * FROM Proveedores");
             cmd = new SqlCommand(ssql, Conexion);
             Conexion.Open();
             var reader = cmd.ExecuteReader();
 
             while (reader.Read())
             {
-                ProductList.Add(new Producto(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), double.Parse(reader.GetDecimal(3).ToString()), reader.GetInt32(4)));
+                ProviderList.Add(new Proveedor(reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetString(3)));
             }
             Conexion.Close();
 
-            return ProductList;
+            return ProviderList;
         }
 
 
@@ -75,18 +74,18 @@ namespace Datos
             }
         }
 
-        public string DeleteProduct(Producto producto)
+        public string DeleteProvider(Proveedor proveedor)
         {
 
             Conexion.Open();
-            cmd = new SqlCommand("EliminarProducto", Conexion);
+            cmd = new SqlCommand("EliminarProveedor", Conexion);
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@Codigo", producto.Codigo);
+            cmd.Parameters.AddWithValue("@Cedula", proveedor.Cedula);
             try
             {
                 var result = cmd.ExecuteNonQuery();
                 Conexion.Close();
-                return result == 1 ? "se eliminó el Producto" : "error al eliminar el Producto";
+                return result == 1 ? "se eliminó el Proveedor" : "error al eliminar el Proveedor";
             }
             catch (Exception)
             {

@@ -50,7 +50,7 @@ namespace Gestion_Ciber_Cafe_GUI
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            using (var form = new ListarClietnes())
+            using (var form = new ListarClientes())
             {
                 var result = form.ShowDialog();
                 if (result == DialogResult.OK)
