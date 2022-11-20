@@ -37,6 +37,7 @@ namespace Gestion_Ciber_Cafe_GUI
             textBoxNombre.Text = "";
             textBoxValorVenta.Text = "";
             textBoxDescripcion.Text = "";
+            textBoxCodigo.Enabled = true;
         }
         void Llenar(Entidades.Producto producto)
         {
@@ -77,12 +78,11 @@ namespace Gestion_Ciber_Cafe_GUI
                         producto.Nombre = textBoxNombre.Text;
                         producto.Descripcion = textBoxDescripcion.Text;
                         producto.ValorVenta = double.Parse(textBoxValorVenta.Text);
-                        //var mensaje = servicioProducto.Edit(producto, row);
-                        //MessageBox.Show(mensaje);
+                        var mensaje = servicioProducto.Edit(producto, row);
+                        MessageBox.Show(mensaje);
                         textBoxCodigo.Focus();
                         RefreshLista();
                     }
-                        
                     Limpiar();
                     row = -1;
                 }
@@ -96,8 +96,8 @@ namespace Gestion_Ciber_Cafe_GUI
                 var Respuesta = MessageBox.Show("Desea borrar el producto?", "Responde...", MessageBoxButtons.YesNo);
                 if (Respuesta == DialogResult.Yes)
                 {
-            //        var mensaje = servicioProducto.Delete(row);
-          //          MessageBox.Show(mensaje);
+                    var mensaje = servicioProducto.Delete(producto);
+                    MessageBox.Show(mensaje);
                     RefreshLista();
                 }
                 Limpiar();
@@ -184,6 +184,10 @@ namespace Gestion_Ciber_Cafe_GUI
 
         private void textBoxCodigo_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (!char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
             if (e.KeyChar == Convert.ToChar(Keys.Enter))
             {
                 textBoxNombre.Focus();
@@ -249,7 +253,9 @@ namespace Gestion_Ciber_Cafe_GUI
         private void grillaListaProductos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             row = e.RowIndex;
-        //    Llenar(servicioProducto.GetAll()[row]);
+            producto = servicioProducto.GetAll()[row];
+            Llenar(producto);
+            textBoxCodigo.Enabled = false;
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
@@ -260,7 +266,9 @@ namespace Gestion_Ciber_Cafe_GUI
         private void grillaListaProductos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             row = e.RowIndex;
-      //      Llenar(servicioProducto.GetAll()[row]);
+            producto = servicioProducto.GetAll()[row];
+            Llenar(producto);
+            textBoxCodigo.Enabled = false;
         }
 
         private void btnGenerarCodigoBarras_Click(object sender, EventArgs e)
