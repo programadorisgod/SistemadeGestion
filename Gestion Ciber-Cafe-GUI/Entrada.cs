@@ -158,5 +158,13 @@ namespace Gestion_Ciber_Cafe_GUI
                 btnGuardar_Click(sender, e);
             }
         }
+
+        private void textBoxCantidad_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Up)
+            {
+                textBoxPrecioCompra.Focus();
+            }
+        }
     }
 }

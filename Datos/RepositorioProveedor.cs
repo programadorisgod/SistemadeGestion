@@ -52,20 +52,21 @@ namespace Datos
         }
 
 
-        public string EditProduct(Producto producto)
+        public string EditProvider(Proveedor proveedor, string cedula)
         {
             Conexion.Open();
-            cmd = new SqlCommand("EditarProducto", Conexion);
+            cmd = new SqlCommand("EditarProveedor", Conexion);
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@Codigo", producto.Codigo);
-            cmd.Parameters.AddWithValue("@Nombre", producto.Nombre);
-            cmd.Parameters.AddWithValue("@Descripcion", producto.Descripcion);
-            cmd.Parameters.AddWithValue("@PrecioVenta", producto.ValorVenta);
+            cmd.Parameters.AddWithValue("@Cedula", proveedor.Cedula);
+            cmd.Parameters.AddWithValue("@Nombre", proveedor.Nombre);
+            cmd.Parameters.AddWithValue("@Telefono", proveedor.Telefono);
+            cmd.Parameters.AddWithValue("@RazonSocial", proveedor.RazonSocial);
+            cmd.Parameters.AddWithValue("@OldCedula", cedula);
             try
             {
                 var result = cmd.ExecuteNonQuery();
                 Conexion.Close();
-                return result == 1 ? "se edtió el Producto" : "error al editar el Producto";
+                return result > 0 ? "se edtió el Proveedor" : "error al editar el Proveedor";
             }
             catch (Exception)
             {

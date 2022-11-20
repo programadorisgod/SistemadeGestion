@@ -19,6 +19,7 @@ namespace Gestion_Ciber_Cafe_GUI
         Entidades.Proveedor proveedor = new Entidades.Proveedor();
         Logica.ServicioProveedor servicioProveedor = new Logica.ServicioProveedor();
         int row = -1;
+        string Cedula = null;
         public Proveedores()
         {
             InitializeComponent();
@@ -39,10 +40,12 @@ namespace Gestion_Ciber_Cafe_GUI
             textBoxNombre.Text = "";
             textBoxTelefono.Text = "";
             textBoxRazonSocial.Text = "";
+            textBoxCedula.Focus();
         }
 
         void Llenar(Entidades.Proveedor proveedor)
         {
+            Cedula = proveedor.Cedula;
             textBoxCedula.Text = proveedor.Cedula;
             textBoxNombre.Text = proveedor.Nombre;
             textBoxTelefono.Text = proveedor.Telefono;
@@ -76,17 +79,20 @@ namespace Gestion_Ciber_Cafe_GUI
                 }
                 else
                 {
-                    var Respuesta = MessageBox.Show("Desea modificar el producto?", "Responde...", MessageBoxButtons.YesNo);
+                    var Respuesta = MessageBox.Show("Desea modificar el proveedor?", "Responde...", MessageBoxButtons.YesNo);
                     if (Respuesta == DialogResult.Yes)
                     {
+                        if (Cedula == textBoxCedula.Text)
+                        {
+                            Cedula = " ";
+                        }
                         labelError.Visible = false;
-                        //producto.Codigo = int.Parse(textBoxCodigo.Text);
-                        //producto.Nombre = textBoxNombre.Text;
-                        //producto.Descripcion = textBoxDescripcion.Text;
-                        //producto.ValorVenta = double.Parse(textBoxValorVenta.Text);
-                        //var mensaje = servicioProducto.Edit(producto, row);
-                        //MessageBox.Show(mensaje);
-                        //textBoxCodigo.Focus();
+                        proveedor.Cedula = textBoxCedula.Text;
+                        proveedor.Nombre = textBoxNombre.Text;
+                        proveedor.Telefono = textBoxTelefono.Text;
+                        proveedor.RazonSocial = textBoxRazonSocial.Text;
+                        var mensaje = servicioProveedor.Edit(proveedor, row, Cedula);
+                        MessageBox.Show(mensaje);
                         RefreshLista();
                     }
                     Limpiar();
@@ -189,6 +195,10 @@ namespace Gestion_Ciber_Cafe_GUI
 
         private void textBoxNombre_KeyDown(object sender, KeyEventArgs e)
         {
+            if (e.KeyCode == Keys.Up)
+            {
+                textBoxCedula.Focus();
+            }
             if (e.KeyCode == Keys.Down)
             {
                 textBoxTelefono.Focus();
@@ -209,6 +219,10 @@ namespace Gestion_Ciber_Cafe_GUI
 
         private void textBoxTelefono_KeyDown(object sender, KeyEventArgs e)
         {
+            if (e.KeyCode == Keys.Up)
+            {
+                textBoxNombre.Focus();
+            }
             if (e.KeyCode == Keys.Down)
             {
                 textBoxRazonSocial.Focus();
@@ -245,6 +259,14 @@ namespace Gestion_Ciber_Cafe_GUI
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             Eliminar();
+        }
+
+        private void textBoxRazonSocial_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Up)
+            {
+                textBoxTelefono.Focus();
+            }
         }
     }
 }

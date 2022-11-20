@@ -59,7 +59,6 @@ namespace Logica
         {
             try
             {
-                ListaProductos[row] = producto;
                 return repositorioProducto.EditProduct(producto);
             }
             catch (Exception)

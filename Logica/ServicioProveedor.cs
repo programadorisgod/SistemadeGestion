@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Logica
 {
-    public class ServicioProveedor : IserviceStandard<Proveedor>
+    public class ServicioProveedor
     {
         List<Proveedor> ListaProveedores;
         RepositorioProveedor repositorioProveedor = new RepositorioProveedor();
@@ -55,17 +55,23 @@ namespace Logica
                 return "El proveedor no fue eliminado correctamente";
             }
         }
-        public string Edit(Proveedor proveedor, int row)
+        public string Edit(Proveedor proveedor, int row, string Cedula)
         {
+            var Encontro = GetById(proveedor, row);
             try
             {
-                //ListaProductos[row] = producto;
-                //return repositorioProducto.EditProduct(producto);
-                return "";
+                if (Encontro == null)
+                {
+                    return repositorioProveedor.EditProvider(proveedor, Cedula);
+                }
+                else
+                {
+                    return "Ya existe un proveedor con esta cedula";
+                }
             }
             catch (Exception)
             {
-                return "Producto no editado";
+                return "Proveedor no editado";
             }
         }
         public Proveedor GetById(Proveedor proveedor, int row)
