@@ -120,5 +120,43 @@ namespace Gestion_Ciber_Cafe_GUI
         {
             Guardar();
         }
+
+        private void Entrada_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
+        private void textBoxPrecioCompra_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != ','))
+            {
+                e.Handled = true;
+            }
+            if (e.KeyChar == Convert.ToChar(Keys.Enter))
+            {
+                textBoxCantidad.Focus();
+            }
+        }
+
+        private void textBoxPrecioCompra_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Down)
+            {
+                textBoxCantidad.Focus();
+            }
+        }
+
+        private void textBoxCantidad_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+            if (e.KeyChar == Convert.ToChar(Keys.Enter))
+            {
+                btnGuardar_Click(sender, e);
+            }
+        }
     }
 }
