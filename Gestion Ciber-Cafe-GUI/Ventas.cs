@@ -1,5 +1,4 @@
 ﻿using Entidades;
-using NPOI.SS.Formula.Functions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,12 +15,10 @@ namespace Gestion_Ciber_Cafe_GUI
     public partial class Ventas : Form
     {
         private static int codigoproducto = 0;
-        private static int stock_ = 0;
-        private static string precioventa_ = string.Empty;
 
+        private static string precioventa = string.Empty;
         Logica.ServicioVentas servicioVentas = new Logica.ServicioVentas();
         Logica.ServicioCliente servicioCliente = new Logica.ServicioCliente();
-        Entidades.Ventas ventas = new Entidades.Ventas();
         public Ventas()
         {
             InitializeComponent();
@@ -81,21 +78,19 @@ namespace Gestion_Ciber_Cafe_GUI
             }
 
             string mensaje = string.Empty;
-            //  int realizar = servicioVentas.reducirCantidad(codigoproducto, Convert.ToInt32(txtCantidad.Value.ToString()), out mensaje);
-            int realizar = 4;
+            int realizar = servicioVentas.reducirCantidad(codigoproducto, Convert.ToInt32(txtCantidad.Value.ToString()), out mensaje);
             decimal subtotal = 0;
             decimal precioventa = 0;
-            decimal.TryParse(precioventa_, out precioventa);
             if (realizar > 0)
             {
                 subtotal = Convert.ToDecimal(txtCantidad.Value.ToString()) * precioventa;
                 GrillaClientes.Rows.Add(new object[]
-                {"",
-                    txtcodigoproducto.Text,
+                {
+                    codigoproducto.ToString(),
                     txtDescripcion.Text,
                     txtCantidad.Value.ToString(),
-                    precioventa.ToString(),
-                    subtotal.ToString()
+                    precioventa.ToString("0.00"),
+                    subtotal.ToString("0.00")
                 });
                 CalcularTotalPagar();
             }
@@ -116,48 +111,34 @@ namespace Gestion_Ciber_Cafe_GUI
             {
                 MessageBox.Show("Por favor debe seleccionar el nombre del cliente para poder agregarlo", "¡Atención!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-            else
+            int cantidad = 0;
+            List<DetalleSalida> detalleSalidas = new List<DetalleSalida>();
+            foreach (DataGridViewRow item in GrillaClientes.Rows)
             {
-                int cantidad = 0;
-                List<DetalleSalida> detalleSalidas = new List<DetalleSalida>();
-                foreach (DataGridViewRow item in GrillaClientes.Rows)
+                detalleSalidas.Add(new DetalleSalida()
                 {
-                    detalleSalidas.Add(new DetalleSalida()
-                    {
-                        CodigoProducto = Convert.ToInt32(item.Cells["Codigo"].Value.ToString()),
-                        Descripcion = item.Cells["Descripcion"].Value.ToString(),
-                        PrecioVenta = Convert.ToDecimal(item.Cells["Precio"].Value.ToString()),
-                        Cantidad = Convert.ToInt32(item.Cells["Cantidads"].Value.ToString()),
-                        SubTotal = Convert.ToDecimal(item.Cells["Subtotal"].Value.ToString())
+                    CodigoProducto = Convert.ToInt32(item.Cells["Codigo"].Value.ToString()),
+                    Descripcion = item.Cells["Descripcion"].Value.ToString(),
+                    PrecioVenta = item.Cells["Precio"].Value.ToString(),
+                    Cantidad = Convert.ToInt32(item.Cells["Cantidads"].Value.ToString()),
+                    SubTotal = item.Cells["Precio"].Value.ToString()
 
-                    });
-                    cantidad += Convert.ToInt32(item.Cells["Cantidads"].Value.ToString());
-                }
-                string mensaje = string.Empty;
-                int id_cliente = servicioVentas.BuscarporID(DocClien.Text.ToString());
-
-                ventas.Idcliente = id_cliente;
-                ventas.CantidadProductos = cantidad;
-                ventas.TotalVenta = Convert.ToDouble(lbltotalF.Text);
-                ventas.ListaDetalleSalida = detalleSalidas;
-
-                int realizado = servicioVentas.Insertar(ventas, out mensaje);
-
-                if (realizado < 1)
-                {
-                    MessageBox.Show(mensaje, "¡Atencion", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
-                else
-                {
-                    MessageBox.Show("Venta realizada con exito", "¡Gracias por comprar!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
-                DocClien.Text = "";
-                GrillaClientes.Rows.Clear();
-                txtnombreclie.Text = "";
-                lbltotalF.Text = "";
-                DocClien.Focus();
+                });
+                cantidad += Convert.ToInt32(item.Cells["Cantidads"].Value.ToString());
             }
-           
+
+            int id_cliente = servicioVentas.BuscarporID(DocClien.Text.ToString());
+            Entidades.Ventas ventas = new Entidades.Ventas()
+            {
+
+                Idcliente = id_cliente,
+                CantidadProductos = cantidad,
+                TotalVenta = Convert.ToInt32(lbltotalF.Text),
+                ListaDetalleSalida = detalleSalidas
+
+            };
+
+
         }
 
         private bool YaExiste()
@@ -193,7 +174,7 @@ namespace Gestion_Ciber_Cafe_GUI
                     total += Convert.ToDecimal(item.Cells["SubTotal"].Value.ToString());
                 }
             }
-            lbltotalF.Text = total.ToString();
+            lbltotal.Text = total.ToString("0.00");
         }
 
         private void GrillaClientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -220,37 +201,6 @@ namespace Gestion_Ciber_Cafe_GUI
                 }
             }
         }
-
-        private void bntBuscarProducto_Click(object sender, EventArgs e)
-        {
-            using (var form = new ListarProductos())
-            {
-                var result = form.ShowDialog();
-                if (result == DialogResult.OK)
-                {
-                    txtcodigoproducto.Text = form.codigo_.ToString();
-                    txtDescripcion.Text = form.descripcion_;
-                    txtStock.Text = form.stock_.ToString();
-                    precioventa_ = form.precioventa_;
-
-                    txtCantidad.Value = 1;
-                    txtCantidad.Focus();
-                }
-            }
-        }
-
-        private void txtcodigoproducto_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
-        {
-            string mensaje = string.Empty;
-            if (e.KeyData == Keys.Enter)
-            {
-
-
-
-
-            }
-        }
     }
 
 }
-

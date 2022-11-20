@@ -95,7 +95,6 @@
             this.seleccion.HeaderText = "";
             this.seleccion.Name = "seleccion";
             this.seleccion.ReadOnly = true;
-            this.seleccion.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.seleccion.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.seleccion.Width = 35;
             // 

@@ -22,7 +22,7 @@ namespace Gestion_Ciber_Cafe_GUI
             InitializeComponent();
         }
 
-        void Refres()
+        void Refresh()
         {
             foreach (var item in servicioCliente.GetAll())
             {
@@ -32,7 +32,7 @@ namespace Gestion_Ciber_Cafe_GUI
 
         private void ListarClietnes_Load(object sender, EventArgs e)
         {
-            Refres();
+            Refresh();
         }
 
         private void GrillaClientes_CellContentClick(object sender, DataGridViewCellEventArgs e)

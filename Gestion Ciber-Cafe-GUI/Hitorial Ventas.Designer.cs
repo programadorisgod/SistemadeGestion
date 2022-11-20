@@ -32,7 +32,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnRegresar = new System.Windows.Forms.Button();
             this.btnimprimir = new System.Windows.Forms.Button();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.lbltotalF = new System.Windows.Forms.Label();
@@ -48,10 +47,13 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.Calendario = new System.Windows.Forms.DateTimePicker();
             this.btnBuscar = new System.Windows.Forms.PictureBox();
+            this.txtBuscar = new System.Windows.Forms.TextBox();
+            this.comboBuscar = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.btnRegresar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grillaPComprados)).BeginInit();
@@ -77,6 +79,8 @@
             this.groupBox1.Controls.Add(this.groupBox3);
             this.groupBox1.Controls.Add(this.Calendario);
             this.groupBox1.Controls.Add(this.btnBuscar);
+            this.groupBox1.Controls.Add(this.txtBuscar);
+            this.groupBox1.Controls.Add(this.comboBuscar);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.groupBox2);
             this.groupBox1.Controls.Add(this.label1);
@@ -86,23 +90,6 @@
             this.groupBox1.Size = new System.Drawing.Size(754, 615);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            // 
-            // btnRegresar
-            // 
-            this.btnRegresar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRegresar.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.btnRegresar.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnRegresar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRegresar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRegresar.Image = global::Gestion_Ciber_Cafe_GUI.Properties.Resources.arrow_left_12777;
-            this.btnRegresar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRegresar.Location = new System.Drawing.Point(621, 12);
-            this.btnRegresar.Name = "btnRegresar";
-            this.btnRegresar.Padding = new System.Windows.Forms.Padding(10, 0, 0, 1);
-            this.btnRegresar.Size = new System.Drawing.Size(127, 33);
-            this.btnRegresar.TabIndex = 149;
-            this.btnRegresar.Text = "       Regresar";
-            this.btnRegresar.UseVisualStyleBackColor = false;
             // 
             // btnimprimir
             // 
@@ -266,7 +253,7 @@
             // 
             // Calendario
             // 
-            this.Calendario.Location = new System.Drawing.Point(76, 79);
+            this.Calendario.Location = new System.Drawing.Point(452, 79);
             this.Calendario.Name = "Calendario";
             this.Calendario.Size = new System.Drawing.Size(200, 20);
             this.Calendario.TabIndex = 9;
@@ -276,21 +263,40 @@
             this.btnBuscar.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.btnBuscar.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.btnBuscar.Image = global::Gestion_Ciber_Cafe_GUI.Properties.Resources._64673;
-            this.btnBuscar.Location = new System.Drawing.Point(291, 79);
+            this.btnBuscar.Location = new System.Drawing.Point(409, 79);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(22, 20);
             this.btnBuscar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.btnBuscar.TabIndex = 8;
             this.btnBuscar.TabStop = false;
             // 
+            // txtBuscar
+            // 
+            this.txtBuscar.Location = new System.Drawing.Point(213, 79);
+            this.txtBuscar.Name = "txtBuscar";
+            this.txtBuscar.Size = new System.Drawing.Size(190, 20);
+            this.txtBuscar.TabIndex = 7;
+            // 
+            // comboBuscar
+            // 
+            this.comboBuscar.FormattingEnabled = true;
+            this.comboBuscar.Items.AddRange(new object[] {
+            "Numero de documento ",
+            "Fecha de venta"});
+            this.comboBuscar.Location = new System.Drawing.Point(86, 79);
+            this.comboBuscar.Name = "comboBuscar";
+            this.comboBuscar.Size = new System.Drawing.Size(121, 21);
+            this.comboBuscar.TabIndex = 4;
+            this.comboBuscar.SelectedIndexChanged += new System.EventHandler(this.comboBuscar_SelectedIndexChanged);
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(21, 85);
+            this.label2.Location = new System.Drawing.Point(13, 82);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(49, 13);
+            this.label2.Size = new System.Drawing.Size(67, 13);
             this.label2.TabIndex = 3;
-            this.label2.Text = "Buscar : ";
+            this.label2.Text = "Buscar por : ";
             // 
             // groupBox2
             // 
@@ -320,6 +326,23 @@
             this.textBox1.Size = new System.Drawing.Size(754, 60);
             this.textBox1.TabIndex = 0;
             // 
+            // btnRegresar
+            // 
+            this.btnRegresar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRegresar.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnRegresar.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.btnRegresar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRegresar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRegresar.Image = global::Gestion_Ciber_Cafe_GUI.Properties.Resources.arrow_left_12777;
+            this.btnRegresar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRegresar.Location = new System.Drawing.Point(621, 12);
+            this.btnRegresar.Name = "btnRegresar";
+            this.btnRegresar.Padding = new System.Windows.Forms.Padding(10, 0, 0, 1);
+            this.btnRegresar.Size = new System.Drawing.Size(127, 33);
+            this.btnRegresar.TabIndex = 149;
+            this.btnRegresar.Text = "       Regresar";
+            this.btnRegresar.UseVisualStyleBackColor = false;
+            // 
             // Hitorial_Ventas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -340,6 +363,7 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.ComboBox comboBuscar;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label1;
@@ -349,6 +373,7 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.DateTimePicker Calendario;
         private System.Windows.Forms.PictureBox btnBuscar;
+        private System.Windows.Forms.TextBox txtBuscar;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtnombreclie;
         private System.Windows.Forms.TextBox DocClien;

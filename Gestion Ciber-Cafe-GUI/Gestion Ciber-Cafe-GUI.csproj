@@ -134,12 +134,6 @@
     <Compile Include="ListarClietnes.Designer.cs">
       <DependentUpon>ListarClietnes.cs</DependentUpon>
     </Compile>
-    <Compile Include="ListarProductos.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ListarProductos.Designer.cs">
-      <DependentUpon>ListarProductos.cs</DependentUpon>
-    </Compile>
     <Compile Include="Principal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -189,9 +183,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ListarClietnes.resx">
       <DependentUpon>ListarClietnes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ListarProductos.resx">
-      <DependentUpon>ListarProductos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
