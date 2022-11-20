@@ -99,6 +99,7 @@
     <Compile Include="Iservices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServicioCliente.cs" />
+    <Compile Include="ServicioEntrada.cs" />
     <Compile Include="ServicioProducto.cs" />
     <Compile Include="ServicioProveedor.cs" />
     <Compile Include="ServiciosAdministrador.cs" />

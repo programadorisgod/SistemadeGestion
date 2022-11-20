@@ -38,7 +38,7 @@ namespace Logica
             }
             catch (Exception)
             {
-                return "Se ha prodciono un error, el producto no fue guardado";
+                return "Se ha producido un error, el producto no fue guardado";
 
             }
         }
