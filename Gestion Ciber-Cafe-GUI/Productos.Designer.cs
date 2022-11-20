@@ -34,6 +34,7 @@
             this.tabPrincipal = new System.Windows.Forms.TabControl();
             this.tabPageProductos = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnBuscar = new System.Windows.Forms.Button();
             this.textBoxBuscar = new System.Windows.Forms.TextBox();
             this.labelBuscar = new System.Windows.Forms.Label();
             this.grillaListaProductos = new System.Windows.Forms.DataGridView();
@@ -60,7 +61,6 @@
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.btnBuscar = new System.Windows.Forms.Button();
             this.tabPrincipal.SuspendLayout();
             this.tabPageProductos.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -120,6 +120,19 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(714, 438);
             this.panel1.TabIndex = 1;
+            // 
+            // btnBuscar
+            // 
+            this.btnBuscar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBuscar.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnBuscar.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBuscar.Image = global::Gestion_Ciber_Cafe_GUI.Properties.Resources._64673__1___1___1___1_;
+            this.btnBuscar.Location = new System.Drawing.Point(673, 24);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(28, 20);
+            this.btnBuscar.TabIndex = 71;
+            this.btnBuscar.UseVisualStyleBackColor = false;
             // 
             // textBoxBuscar
             // 
@@ -470,18 +483,6 @@
             this.pictureBox5.Click += new System.EventHandler(this.pictureBox5_Click);
             this.pictureBox5.MouseLeave += new System.EventHandler(this.pictureBox5_MouseLeave);
             this.pictureBox5.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox5_MouseMove);
-            // 
-            // btnBuscar
-            // 
-            this.btnBuscar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBuscar.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBuscar.Image = global::Gestion_Ciber_Cafe_GUI.Properties.Resources._64673__1___1___1___1_;
-            this.btnBuscar.Location = new System.Drawing.Point(673, 24);
-            this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(28, 20);
-            this.btnBuscar.TabIndex = 71;
-            this.btnBuscar.UseVisualStyleBackColor = false;
             // 
             // Productos
             // 
