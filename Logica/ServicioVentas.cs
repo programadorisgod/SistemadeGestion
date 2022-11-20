@@ -9,6 +9,7 @@ namespace Logica
     public class ServicioVentas
     {
         Datos.RepositorioVentas repositorioVentas = new Datos.RepositorioVentas();
+        Datos.RepositorioCliente repositorioCliente = new Datos.RepositorioCliente();
         public int reducirCantidad(int codigoproducto, int cantidad, out string mensaje)
         {
 
@@ -18,6 +19,11 @@ namespace Logica
         public int CantidadNormal(int codigoproducto, int cantidad, out string mensaje)
         {
             return repositorioVentas.Cantidadnormal(codigoproducto, cantidad, out mensaje);
+        }
+
+        public int BuscarporID(string cedula)
+        {
+            return repositorioCliente.BuscarPorId(cedula);
         }
     }
 }

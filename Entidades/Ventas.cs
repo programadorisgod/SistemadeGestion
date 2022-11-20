@@ -8,7 +8,7 @@ namespace Entidades
     public class Ventas
     {
         public int IdVenta { get; set; }
-
+        public int Idcliente { get; set; }
         public string CedulaCliente { get; set; }
 
         public string NombreCliente { get; set; }

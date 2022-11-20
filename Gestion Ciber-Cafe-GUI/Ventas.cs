@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,6 +18,7 @@ namespace Gestion_Ciber_Cafe_GUI
 
         private static string precioventa = string.Empty;
         Logica.ServicioVentas servicioVentas = new Logica.ServicioVentas();
+        Logica.ServicioCliente servicioCliente = new Logica.ServicioCliente();
         public Ventas()
         {
             InitializeComponent();
@@ -125,11 +127,11 @@ namespace Gestion_Ciber_Cafe_GUI
                 cantidad += Convert.ToInt32(item.Cells["Cantidads"].Value.ToString());
             }
 
+            int id_cliente = servicioVentas.BuscarporID(DocClien.Text.ToString());
             Entidades.Ventas ventas = new Entidades.Ventas()
             {
 
-                CedulaCliente = DocClien.Text,
-                FechaRegistro = DateTime.Now.ToString("dd/MM/yyyy"),
+                Idcliente = id_cliente,
                 CantidadProductos = cantidad,
                 TotalVenta = Convert.ToInt32(lbltotalF.Text),
                 ListaDetalleSalida = detalleSalidas
@@ -157,7 +159,7 @@ namespace Gestion_Ciber_Cafe_GUI
             return mensaje;
         }
 
-     
+
         private void btnventa_Click(object sender, EventArgs e)
         {
             RealizarVenta();
